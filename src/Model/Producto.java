@@ -3,7 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
-
+import Conexion.Conexion;
+import java.awt.List;
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 /**
  *
  * @author nicolas
@@ -13,14 +20,14 @@ int id_producto;
 String nombreProducto;
 String descripcion;
 double precio;
-String cantidadStock;
+int cantidadStock;
 String categoria;
 int id_categoria;
 int estadoProducto;
 String provedor;
 int id_provedor;
 
-    public Producto(int id_producto, String nombreProducto, String descripcion, double precio, String cantidadStock, String categoria, int id_categoria, int estadoProducto, String provedor, int id_provedor) {
+    public Producto(int id_producto, String nombreProducto, String descripcion, double precio, int cantidadStock, String categoria, int id_categoria, int estadoProducto, String provedor, int id_provedor) {
         this.id_producto = id_producto;
         this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
@@ -52,7 +59,7 @@ int id_provedor;
         return precio;
     }
 
-    public String getCantidadStock() {
+    public int getCantidadStock() {
         return cantidadStock;
     }
 
@@ -92,7 +99,7 @@ int id_provedor;
         this.precio = precio;
     }
 
-    public void setCantidadStock(String cantidadStock) {
+    public void setCantidadStock(int cantidadStock) {
         this.cantidadStock = cantidadStock;
     }
 
@@ -116,6 +123,55 @@ int id_provedor;
         this.id_provedor = id_provedor;
     }
 
+    
+    
+    public static ArrayList <Producto> buscarTablaProducto() throws SQLException{
+    
+    ArrayList <Producto> tablaProductos = new ArrayList<>();
+    Conexion conexion = new Conexion();
+    Connection conn = null;
+    
+        if (!conexion.abrir()) {
+            throw new SQLException("No se pudo abrir base de datos");
+        } 
+                 
+        
+        
+        conn = conexion.enlace;
+        
+      
+        
+        try {
+            
+            String consultaSQL = "SELECT * FROM producto ";
+            PreparedStatement statement = conn.prepareStatement(consultaSQL);
+            ResultSet resultado = statement.executeQuery();
+            
+        
+        
+            while (resultado.next()) {
+        Producto producto = new Producto();
+        producto.setId_producto(resultado.getInt("id_producto"));
+        producto.setDescripcion(resultado.getString("descripcion"));
+        producto.setPrecio(resultado.getInt("precio"));
+        producto.setCantidadStock(resultado.getInt("cantidadStock"));
+        producto.setCategoria(resultado.getString("categoria"));
+        producto.setEstadoProducto(resultado.getInt("estadoProducto"));
+        producto.setProvedor(resultado.getString("provedor"));
+        producto.setId_provedor(resultado.getInt("id_provedor"));
+        tablaProductos.add(producto);  
+          
+                
+            }
+       
+            
+            
+        } finally {
+            conexion.cerrar();
+        }
+    
+    return tablaProductos;
+    }
 
 
 }
