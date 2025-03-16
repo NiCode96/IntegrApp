@@ -4,6 +4,11 @@
  */
 package VistaController;
 
+
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import Model.Producto;
+
 /**
  *
  * @author Cakri
@@ -13,8 +18,53 @@ public class Inventario extends javax.swing.JInternalFrame {
     /**
      * Creates new form Inventario
      */
+    
+    DefaultTableModel model = new DefaultTableModel();
+    
+    
     public Inventario() {
         initComponents();
+        model.addColumn("ID Producto");
+        model.addColumn("Nombre Producto");
+        model.addColumn("Descripcion");
+        model.addColumn("Precio");
+        model.addColumn("Cantidad Stock");
+        model.addColumn("Categoria");
+        model.addColumn("Provedor");
+        llenarTabla();
+        
+    }
+    
+    
+    public void llenarTabla(){
+    jTable2.setModel(model);
+    
+    
+        try {
+            ArrayList<Producto> tablaProductos = Producto.buscarTablaProducto();
+            
+            for (Producto tablaProducto : tablaProductos) {
+               Object objeto[] = new Object[7];
+               
+                objeto[0] = tablaProducto.getId_producto();
+                objeto[1] = tablaProducto.getNombreProducto();
+                objeto[2] = tablaProducto.getDescripcion();
+                objeto[3] = tablaProducto.getPrecio();
+                objeto[4] = tablaProducto.getCantidadStock();
+                objeto[5] = tablaProducto.getCategoria();
+                objeto[6] = tablaProducto.getProvedor();
+                
+                model.addRow(objeto);
+               
+                                                        
+            }
+            
+            
+            
+        } catch (Exception e) {
+        }
+    
+    
     }
 
     /**
@@ -26,9 +76,9 @@ public class Inventario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -36,41 +86,41 @@ public class Inventario extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Inventario");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Precio", "Stock", "Categoria", "Descripcion", "Proveedor"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Inventario de productos");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1061, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1032, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
 
         pack();
@@ -79,7 +129,7 @@ public class Inventario extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

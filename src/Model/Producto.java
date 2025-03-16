@@ -152,6 +152,7 @@ int id_provedor;
             while (resultado.next()) {
         Producto producto = new Producto();
         producto.setId_producto(resultado.getInt("id_producto"));
+        producto.setNombreProducto(resultado.getString("nombreProducto"));
         producto.setDescripcion(resultado.getString("descripcion"));
         producto.setPrecio(resultado.getInt("precio"));
         producto.setCantidadStock(resultado.getInt("cantidadStock"));
