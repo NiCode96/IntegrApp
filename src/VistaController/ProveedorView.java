@@ -8,12 +8,12 @@ package VistaController;
  *
  * @author Cakri
  */
-public class Proveedor extends javax.swing.JInternalFrame {
+public class ProveedorView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Proveedor
      */
-    public Proveedor() {
+    public ProveedorView() {
         initComponents();
     }
 
@@ -27,7 +27,7 @@ public class Proveedor extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel10 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tpnProveedores = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -38,7 +38,7 @@ public class Proveedor extends javax.swing.JInternalFrame {
         txtDireccionA = new javax.swing.JTextField();
         txtTelefonoA = new javax.swing.JTextField();
         txtEstadoA = new javax.swing.JTextField();
-        btnInsertar = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -49,7 +49,7 @@ public class Proveedor extends javax.swing.JInternalFrame {
         txtTelefonoEdi = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtEstadoEdi = new javax.swing.JTextField();
-        btnRegistrar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -61,6 +61,8 @@ public class Proveedor extends javax.swing.JInternalFrame {
         btnEliminarN = new javax.swing.JButton();
         btnEliminarD = new javax.swing.JButton();
         btnEliminarEs = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProveedores = new javax.swing.JTable();
 
         jLabel10.setText("jLabel10");
 
@@ -83,10 +85,10 @@ public class Proveedor extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Registro de proveedores");
 
-        btnInsertar.setText("Registrar");
-        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertarActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
 
@@ -97,7 +99,7 @@ public class Proveedor extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -139,12 +141,12 @@ public class Proveedor extends javax.swing.JInternalFrame {
                     .addComponent(txtEstadoA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDireccionA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
 
-        jTabbedPane1.addTab("Agregar", jPanel1);
+        tpnProveedores.addTab("Agregar", jPanel1);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Modificar proveedor");
@@ -163,7 +165,7 @@ public class Proveedor extends javax.swing.JInternalFrame {
             }
         });
 
-        btnRegistrar.setText("Registrar");
+        btnModificar.setText("Registrar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -192,7 +194,7 @@ public class Proveedor extends javax.swing.JInternalFrame {
                                     .addComponent(txtTelefonoEdi, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                                     .addComponent(txtEstadoEdi))))
                         .addGap(0, 34, Short.MAX_VALUE))
-                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -212,12 +214,12 @@ public class Proveedor extends javax.swing.JInternalFrame {
                     .addComponent(txtEstadoEdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(txtDireccionEdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
-        jTabbedPane1.addTab("Editar", jPanel2);
+        tpnProveedores.addTab("Editar", jPanel2);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setText("Eliminar proveedor");
@@ -279,10 +281,25 @@ public class Proveedor extends javax.swing.JInternalFrame {
                     .addComponent(jLabel15)
                     .addComponent(txtEstadoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminarEs))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Eliminar", jPanel3);
+        tpnProveedores.addTab("Eliminar", jPanel3);
+
+        tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblProveedores);
+
+        tpnProveedores.addTab("Proveedores", jScrollPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -290,22 +307,22 @@ public class Proveedor extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1))
+                .addComponent(tpnProveedores))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tpnProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnInsertarActionPerformed
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtEstadoEdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoEdiActionPerformed
         // TODO add your handling code here:
@@ -316,7 +333,7 @@ public class Proveedor extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminarD;
     private javax.swing.JButton btnEliminarEs;
     private javax.swing.JButton btnEliminarN;
-    private javax.swing.JButton btnInsertar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -336,7 +353,9 @@ public class Proveedor extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblProveedores;
+    private javax.swing.JTabbedPane tpnProveedores;
     private javax.swing.JTextField txtDireccionA;
     private javax.swing.JTextField txtDireccionE;
     private javax.swing.JTextField txtDireccionEdi;
