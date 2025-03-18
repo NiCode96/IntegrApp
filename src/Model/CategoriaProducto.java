@@ -8,21 +8,22 @@ package Model;
  *
  * @author nicolas
  */
-public class CategoriaProducto {
+public class CategoriaProducto { // atributos de la clase 
     int id_categoria;
     String nombreCategoria;
     int estadoCategoria;
 
-    public CategoriaProducto() {
+    public CategoriaProducto() { //constructor vacío
+        
     }
     
     
 
-    public int getId_categoria() {
+    public int getId_categoria() { 
         return id_categoria;
-    }
+    } 
 
-    public String getNombreCategoria() {
+    public String getNombreCategoria() { 
         return nombreCategoria;
     }
 

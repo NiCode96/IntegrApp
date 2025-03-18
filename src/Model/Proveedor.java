@@ -15,7 +15,7 @@ public class Proveedor {
    String telefono;
    int estadoProvedor;
 
-    public Proveedor(int id_provedor, String nombreProvedor, String direccion, String telefono, int estadoProvedor) {
+    public Proveedor(int id_provedor, String nombreProvedor, String direccion, String telefono, int estadoProvedor) { //constructor con todos los atributos 
         this.id_provedor = id_provedor;
         this.nombreProvedor = nombreProvedor;
         this.direccion = direccion;

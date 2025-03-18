@@ -8,7 +8,7 @@ package Model;
  *
  * @author nicolas
  */
-public class Cliente {
+public class Cliente { //atributos de la clase 
     int id_cliente;
     String nombreCliente;
     String rut;

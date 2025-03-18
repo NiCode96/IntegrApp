@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author nicolas
  */
-public class Producto {
+public class Producto { //atributos de la clase
 int id_producto;
 String nombreProducto;
 String descripcion;
@@ -38,7 +38,7 @@ int id_provedor;
         this.estadoProducto = estadoProducto;
         this.provedor = provedor;
         this.id_provedor = id_provedor;
-    }
+    } //constructor general con todos los atributos de la clase 
 
     public Producto() {
     }
@@ -125,7 +125,7 @@ int id_provedor;
 
     
     
-    public static ArrayList <Producto> buscarTablaProducto() throws SQLException{
+    public static ArrayList <Producto> buscarTablaProducto() throws SQLException{ //metodo con el que se buscn los productos a través de una consulta sql en la base de datos, se abre una conexion, despues se obtienen los datos de la vista y posteriomente se realiza la consulta, si esta encuentra retorna la lista de productos
     
     ArrayList <Producto> tablaProductos = new ArrayList<>();
     Conexion conexion = new Conexion();

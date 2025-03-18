@@ -36,7 +36,7 @@ public class Inventario extends javax.swing.JInternalFrame {
     }
     
     
-    public void llenarTabla(){
+    public void llenarTabla(){ //metodo con el que se llena la tabla para el usuario, utilizando el metodo para buscar producto de la clase producto 
     jTable2.setModel(model);
     
     
