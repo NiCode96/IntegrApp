@@ -16,16 +16,16 @@ import java.util.ArrayList;
  * @author nicolas
  */
 public class Producto { //atributos de la clase
-int id_producto;
-String nombreProducto;
-String descripcion;
-double precio;
-int cantidadStock;
-String categoria;
-int id_categoria;
-int estadoProducto;
-String provedor;
-int id_provedor;
+protected int id_producto;
+protected String nombreProducto;
+protected String descripcion;
+protected double precio;
+protected int cantidadStock;
+protected String categoria;
+protected int id_categoria;
+protected int estadoProducto;
+protected String provedor;
+protected int id_provedor;
 
     public Producto(int id_producto, String nombreProducto, String descripcion, double precio, int cantidadStock, String categoria, int id_categoria, int estadoProducto, String provedor, int id_provedor) {
         this.id_producto = id_producto;

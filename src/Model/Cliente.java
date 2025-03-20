@@ -9,10 +9,10 @@ package Model;
  * @author nicolas
  */
 public class Cliente { //atributos de la clase 
-    int id_cliente;
-    String nombreCliente;
-    String rut;
-    String estadoCliente;
+    protected int id_cliente;
+    protected String nombreCliente;
+    protected String rut;
+    protected String estadoCliente;
 
     public Cliente() {
     }
