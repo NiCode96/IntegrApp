@@ -4,10 +4,7 @@
  */
 package Controller;
 
-/**
- *
- * @author nicolas
- */
+
 public class ControllerProducto {
     
 }
