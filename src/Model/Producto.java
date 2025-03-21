@@ -15,6 +15,7 @@ import java.util.ArrayList;
  *
  * @author nicolas
  */
+<<<<<<< HEAD
 public class Producto {    
         
         //atributos de la clase
@@ -29,6 +30,19 @@ public class Producto {
         int estadoProducto;
         String provedor;
         int id_provedor;
+=======
+public class Producto { //atributos de la clase
+protected int id_producto;
+protected String nombreProducto;
+protected String descripcion;
+protected double precio;
+protected int cantidadStock;
+protected String categoria;
+protected int id_categoria;
+protected int estadoProducto;
+protected String provedor;
+protected int id_provedor;
+>>>>>>> a2a9f29819dec477dc9372dcbe35eeab54fa1545
 
     /*
         constructor general con todos los atributos de la clase 

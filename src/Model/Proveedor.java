@@ -9,11 +9,11 @@ package Model;
  * @author nicolas
  */
 public class Proveedor {
-   int id_provedor;
-   String nombreProvedor;
-   String direccion;
-   String telefono;
-   int estadoProvedor;
+   protected int id_provedor;
+   protected String nombreProvedor;
+   protected String direccion;
+   protected String telefono;
+   protected int estadoProvedor;
 
     public Proveedor(int id_provedor, String nombreProvedor, String direccion, String telefono, int estadoProvedor) { //constructor con todos los atributos 
         this.id_provedor = id_provedor;
