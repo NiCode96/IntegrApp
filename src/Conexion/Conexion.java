@@ -15,7 +15,7 @@ public class Conexion {
     public Conexion() // constructor 
     {
         this.db = "IntegrApp";
-        this.jdbc = "jdbc:mysql://localhost:3308/" + this.db;
+        this.jdbc = "jdbc:mysql://localhost:3306/" + this.db;
         this.userMysql = "root";
         this.passUserMysql = "";
     }

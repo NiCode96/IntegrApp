@@ -38,6 +38,7 @@ public class InventarioView extends javax.swing.JInternalFrame {
     
     public void llenarTabla(){ //metodo con el que se llena la tabla para el usuario, utilizando el metodo para buscar producto de la clase producto 
     tblInventario.setModel(model);
+    model.setRowCount(0);
     
     
         try {

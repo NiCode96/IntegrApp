@@ -2,13 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/C:/Users/Cakri/OneDrive/Escritorio/IntegrApp/src/VistaController/ProductosView.java</file>
-            <file>file:/C:/Users/Cakri/OneDrive/Escritorio/IntegrApp/src/Model/Producto.java</file>
+            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/VistaController/VistaPrincipal.java</file>
+            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/VistaController/ProveedorView.java</file>
+            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/Model/Producto.java</file>
+            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/Conexion/Conexion.java</file>
+            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/VistaController/InventarioView.java</file>
+            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/Model/Proveedor.java</file>
+            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/Controller/ControllerProveedor.java</file>
         </group>
-=======
-        <group/>
->>>>>>> a2a9f29819dec477dc9372dcbe35eeab54fa1545
     </open-files>
 </project-private>
