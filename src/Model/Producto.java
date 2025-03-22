@@ -4,8 +4,6 @@
  */
 package Model;
 import Conexion.Conexion;
-import java.awt.List;
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,7 +45,7 @@ public class Producto {
     }
     
     /*
-        Constructor para ingresar productos a la base de datos,
+        Constructor para insertar productos productos a la base de datos,
         no entra variable id_producto, id_categoria, id_proveedor, ya que estas son autoincremental ingresadas "desde" la db
         no "hacia" la db.
     */
@@ -60,6 +58,7 @@ public class Producto {
         this.estadoProducto = estadoProducto;
         this.provedor = provedor;
     }
+    
 
     public Producto() {
     }
@@ -217,34 +216,47 @@ public class Producto {
     }    
     
     /*Modificar producto*/
-    public static void modificarProducto(Producto producto) throws SQLException{
-        if(producto == null){
-            throw new IllegalArgumentException("Error, procuto ingresado no puede ser tipo null");
-        }
+    public static void modificarProductoPorId(Producto vista) throws SQLException{
         
         Conexion conexion = new Conexion();
         
-        if(conexion.abrir()){
-            String sql = "UPDATE producto into tbl_Producto nombreProducto=?, descripcion=?,precio=?,cantidadStock=?,categoria=?,estadoProducto=?,proveedor=? "
-                    + "WHERE Id_producto = ?";
-            try(PreparedStatement stmt = conexion.enlace.prepareStatement(sql)){
-                stmt.setString(1,producto.getNombreProducto());
-                stmt.setString(2,producto.getDescripcion());
-                stmt.setDouble(3,producto.getPrecio());
-                stmt.setInt(4,producto.getCantidadStock());
-                stmt.setString(5,producto.getCategoria());
-                stmt.setInt(6,producto.getEstadoProducto());
-                stmt.setString(7,producto.getProvedor());
-                stmt.setInt(8,producto.getId_producto());
+        //Variable pasada a Integer para poder ser comparad con null
+        Integer id = vista.getId_producto();
+        
+        if(id == null || vista == null || id <= 0){
+            throw new IllegalArgumentException("Error, id ingresado no valido");
+        }
+        
+        if(vista == null){
+            throw new IllegalArgumentException("Error, el producto no puede der null");
+        }
+        
+        if(!conexion.abrir()){
+            throw new SQLException("Error: no se pudo establecer conexion con la base de datos");
+        }
+        String sql = "UPDATE tbl_producto SET nombreProducto=?, descripcion=?,precio=?,cantidadStock=?,categoria=?,estadoProducto=?,proveedor=? WHERE Id_producto = ?";
+        try(PreparedStatement stmt = conexion.enlace.prepareStatement(sql)){
+            stmt.setString(1,vista.getNombreProducto());
+            stmt.setString(2,vista.getDescripcion());
+            stmt.setDouble(3,vista.getPrecio());
+            stmt.setInt(4,vista.getCantidadStock());
+            stmt.setString(5,vista.getCategoria());
+            stmt.setInt(6,vista.getEstadoProducto());
+            stmt.setString(7,vista.getProvedor());
+            stmt.setInt(8,vista.getId_producto());
                 
-                stmt.executeUpdate();
-            }finally{
-                conexion.cerrar();
+            //Ejecutar la actualizacion
+            int filasAfectadas = stmt.executeUpdate();
+            if(filasAfectadas == 0){
+                throw new SQLException("Error: no se encontro un producto con el ID especificado");
             }
+        }finally{
+            conexion.cerrar();
         }
     }
+ 
     
-    /*Eliminar prodcuto*/
+    /*Eliminar producto*/
     public static void eliminarProducto(Producto producto) throws SQLException{
         if(producto == null){
             throw new IllegalArgumentException("Error: producto ingresado no puede ser tipo null");
