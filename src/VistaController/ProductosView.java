@@ -82,8 +82,8 @@ public class ProductosView extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Productos ");
+        setMinimumSize(new java.awt.Dimension(130, 50));
         setPreferredSize(new java.awt.Dimension(615, 360));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -194,7 +194,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
                     .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -294,7 +294,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2)
                             .addComponent(txtProveedorM))
-                        .addGap(0, 26, Short.MAX_VALUE))
+                        .addGap(0, 22, Short.MAX_VALUE))
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -385,7 +385,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(174, 174, 174)
                 .addComponent(jLabel3)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,13 +426,13 @@ public class ProductosView extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1))
         );
 
         pack();
@@ -561,7 +561,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
                producto.getPrecio(),
                producto.getCantidadStock(),
                producto.getCategoria(),
-               producto.getProvedor(),
+               producto.getProveedor(),
                producto.getDescripcion()
             });
         }

@@ -61,6 +61,18 @@ public class Producto {
         this.provedor = provedor;
     }
     
+    /*
+        Constructor con parametro id_producto agregado
+    */
+    public Producto(int id_producto,String nombreProducto, String descripcion, double precio, int cantidadStock, String categoria, int estadoProducto, String provedor){
+        this.nombreProducto = nombreProducto;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.cantidadStock = cantidadStock;
+        this.categoria = categoria;
+        this.estadoProducto = estadoProducto;
+        this.provedor = provedor;
+    }
 
     public Producto() {
     }
@@ -97,7 +109,7 @@ public class Producto {
         return estadoProducto;
     }
 
-    public String getProvedor() {
+    public String getProveedor() {
         return provedor;
     }
 
@@ -208,7 +220,7 @@ public class Producto {
             stmt.setInt(4,producto.getCantidadStock());
             stmt.setString(5,producto.getCategoria());
             stmt.setInt(6,producto.getEstadoProducto());
-            stmt.setString(7,producto.getProvedor());
+            stmt.setString(7,producto.getProveedor());
                 
             int filasAfectadas = stmt.executeUpdate();
             return filasAfectadas > 0;
@@ -234,7 +246,7 @@ public class Producto {
                     stmt.setInt(4,vista.getCantidadStock());
                     stmt.setString(5,vista.getCategoria());
                     stmt.setInt(6,vista.getEstadoProducto());
-                    stmt.setString(7,vista.getProvedor());
+                    stmt.setString(7,vista.getProveedor());
                     stmt.setInt(8,id_producto);
                 
                     //Ejecutar la actualizacion

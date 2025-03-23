@@ -8,6 +8,9 @@ package VistaController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import Model.Producto;
+import java.util.List;
+import Controller.ControllerInventario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,28 +18,27 @@ import Model.Producto;
  */
 public class InventarioView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Inventario
-     */
+    
     
     DefaultTableModel model = new DefaultTableModel();
     
     
     public InventarioView() {
         initComponents();
-        model.addColumn("ID Producto");
+        
+        /*model.addColumn("ID Producto");
         model.addColumn("Nombre Producto");
         model.addColumn("Descripcion");
         model.addColumn("Precio");
         model.addColumn("Cantidad Stock");
         model.addColumn("Categoria");
         model.addColumn("Provedor");
-        llenarTabla();
+        llenarTabla();*/
         
     }
     
     
-    public void llenarTabla(){ //metodo con el que se llena la tabla para el usuario, utilizando el metodo para buscar producto de la clase producto 
+    /*public void llenarTabla(){ //metodo con el que se llena la tabla para el usuario, utilizando el metodo para buscar producto de la clase producto 
     tblInventario.setModel(model);
     model.setRowCount(0);
     
@@ -66,8 +68,8 @@ public class InventarioView extends javax.swing.JInternalFrame {
         }
     
     
-    }
-
+    }*/
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,11 +82,12 @@ public class InventarioView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblInventario = new javax.swing.JTable();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        cbxMayorPrecio = new javax.swing.JCheckBox();
+        cbxMenorPrecio = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        cbxMayorStock = new javax.swing.JCheckBox();
+        cbxMenorStock = new javax.swing.JCheckBox();
+        cbxTodos = new javax.swing.JCheckBox();
 
         setClosable(true);
         setIconifiable(true);
@@ -97,32 +100,53 @@ public class InventarioView extends javax.swing.JInternalFrame {
 
         tblInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Nombre", "", "Title 4", "Title 5", "Title 6"
             }
         ));
         jScrollPane2.setViewportView(tblInventario);
 
-        jCheckBox1.setText("Mayor precio");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbxMayorPrecio.setText("Mayor precio");
+        cbxMayorPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                cbxMayorPrecioActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("Menor Precio");
+        cbxMenorPrecio.setText("Menor Precio");
+        cbxMenorPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxMenorPrecioActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Filtrar por: ");
+        jLabel2.setText("Ordenar por:");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Limpiar");
+        cbxMayorStock.setText("Mayor stock");
+        cbxMayorStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxMayorStockActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("Limpiar buscador");
+        cbxMenorStock.setText("Menor stock");
+        cbxMenorStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxMenorStockActionPerformed(evt);
+            }
+        });
+
+        cbxTodos.setText("Todos");
+        cbxTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTodosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,19 +155,28 @@ public class InventarioView extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(199, 199, 199)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(21, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(57, 57, 57)
-                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbxTodos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbxMayorPrecio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbxMenorPrecio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbxMayorStock)
                         .addGap(18, 18, 18)
-                        .addComponent(jCheckBox2))
-                    .addComponent(jLabel3)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(cbxMenorStock)
+                        .addGap(38, 38, 38))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,32 +186,103 @@ public class InventarioView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                    .addComponent(cbxMayorPrecio)
+                    .addComponent(cbxMenorPrecio)
+                    .addComponent(cbxMayorStock)
+                    .addComponent(cbxMenorStock)
+                    .addComponent(cbxTodos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    private void cbxMayorPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMayorPrecioActionPerformed
+        List<Producto> productos = ControllerInventario.mostrarMaxStocks();
+        
+        if(productos != null && !productos.isEmpty()){
+            //llenar tabla con productos
+            llenarTabla(productos);
+        }else{
+            JOptionPane.showMessageDialog(null,"Productos no encontrados");
+        }
+    }//GEN-LAST:event_cbxMayorPrecioActionPerformed
 
+    private void cbxTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTodosActionPerformed
+        List<Producto> productos = ControllerInventario.mostrarTodo();
+        
+        if(productos != null && !productos.isEmpty()){
+            //Llenar tabla con los productos
+            llenarTabla(productos);
+        }else{
+            JOptionPane.showMessageDialog(null, "Productos no encontrados");
+        }
+    }//GEN-LAST:event_cbxTodosActionPerformed
+
+    private void cbxMenorPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMenorPrecioActionPerformed
+        List<Producto> productos = ControllerInventario.mostrarMinStocks();
+        
+        if(productos != null && !productos.isEmpty()){
+            //Llenar tabla con los productos
+            llenarTabla(productos);
+        }else{
+            JOptionPane.showMessageDialog(null,"Productos no encontrados");
+        }
+    }//GEN-LAST:event_cbxMenorPrecioActionPerformed
+
+    private void cbxMayorStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMayorStockActionPerformed
+        List<Producto> productos = ControllerInventario.mostrarMaxStocks();
+        
+        if(productos != null && !productos.isEmpty()){
+            //Llenar tabla con los productos
+            llenarTabla(productos);
+        }else{
+            JOptionPane.showMessageDialog(null,"Productos no encontrados");
+        }
+    }//GEN-LAST:event_cbxMayorStockActionPerformed
+
+    private void cbxMenorStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMenorStockActionPerformed
+        List<Producto> productos = ControllerInventario.mostrarMinStocks();
+        
+        if(productos != null && !productos.isEmpty()){
+            //Llenar tabla con los productos
+            llenarTabla(productos);
+        }else{
+            JOptionPane.showMessageDialog(null,"Productos no encontrados");
+        }
+    }//GEN-LAST:event_cbxMenorStockActionPerformed
+    
+    public void llenarTabla(List<Producto> productos){
+        //Obtener modelo de la tabla para manipular columnas y filas
+        DefaultTableModel modelo = (DefaultTableModel) tblInventario.getModel();
+        
+        //Limpiar datos existentes en la tabla
+        modelo.setRowCount(0);
+        
+        //Llenar los datos desde la arrayList
+        for(Producto producto : productos){
+            modelo.addRow(new Object[]{
+                producto.getId_producto(),
+                producto.getNombreProducto(),
+                producto.getPrecio(),
+                producto.getCantidadStock(),
+                producto.getCategoria(),
+                producto.getProveedor(),
+                producto.getDescripcion()
+            });
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox cbxMayorPrecio;
+    private javax.swing.JCheckBox cbxMayorStock;
+    private javax.swing.JCheckBox cbxMenorPrecio;
+    private javax.swing.JCheckBox cbxMenorStock;
+    private javax.swing.JCheckBox cbxTodos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblInventario;
     // End of variables declaration//GEN-END:variables
