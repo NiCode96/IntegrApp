@@ -442,7 +442,7 @@ public class ProveedorView extends javax.swing.JInternalFrame {
                 objeto[1] = pv.getNombreProvedor();
                 objeto[2] = pv.getDireccion();
                 objeto[3] = pv.getTelefono();
-                objeto[4] = pv.getEstadoProvedor();
+                objeto[4] = (pv.getEstadoProvedor() == 1) ? "Activo" : "Inactivo";
                 
                 
                 model.addRow(objeto);
