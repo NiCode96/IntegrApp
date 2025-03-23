@@ -302,6 +302,39 @@ public class Producto {
     }
     
     //Metodo para buscar un producto por su id y llenar tabla en apartado "eliminar producto"
-    public static List<Integer> buscarProducto(int id) throws SQLException{}
+    public static List<Producto> buscarTablaProducto(int id) throws SQLException{
+        
+        List<Producto> producto = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = null;
+        
+        if(!conexion.abrir()){
+            throw new IllegalArgumentException("Error: No se pudo establecer conexion con la base de datos");
+        }
+        
+        conn = conexion.enlace;
+        String sql = "SELECT * FROM tbl_producto WHERE id_producto =?";
+        try(PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1,id);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                String nombre = rs.getString("nombreProducto");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio");
+                int stock = rs.getInt("stock");
+                String categoria = rs.getString("categoria");
+                String proveedor = rs.getString("Proveedor");
+                
+                //Agregar a la arraylist 
+                producto.add(new Producto(nombre,descripcion,precio,stock,categoria,0,proveedor));
+            }
+            
+        }finally{
+            conexion.cerrar();
+        }
+        //Retorna arraylist con el producto, si no hay, retorna el arraylist sin elemento
+        return producto;
+    }
 }
 

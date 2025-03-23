@@ -90,5 +90,12 @@ public class ControllerProducto {
     }
     
     //Metodo para buscar un producto por su id y llenar tabla en apartado "eliminar producto"
-    public static List<Integer> buscarProducto(int id) throws SQLException{}
+    public static List<Producto> tablaEliminar(int id){
+        try{
+            return Producto.buscarTablaProducto(id);
+        }catch(SQLException e){
+            System.out.println("Error al buscar producto: " + e);
+            return null;
+        }
+    }
 }
