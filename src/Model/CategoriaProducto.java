@@ -9,9 +9,9 @@ package Model;
  * @author nicolas
  */
 public class CategoriaProducto { // atributos de la clase 
-    int id_categoria;
-    String nombreCategoria;
-    int estadoCategoria;
+    protected int id_categoria;
+    protected String nombreCategoria;
+    protected int estadoCategoria;
 
     public CategoriaProducto() { //constructor vacío
         
