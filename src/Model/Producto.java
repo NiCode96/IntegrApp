@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author nicolas
@@ -76,6 +77,17 @@ public class Producto {
 
     public Producto() {
     }
+
+    public Producto(String nombreProducto, String descripcion, double precio, int cantidadStock, String categoria, String provedor) {
+        this.nombreProducto = nombreProducto;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.cantidadStock = cantidadStock;
+        this.categoria = categoria;
+        this.provedor = provedor;
+    }
+    
+    
 
     public int getId_producto() {
         return id_producto;
@@ -348,5 +360,93 @@ public class Producto {
         //Retorna arraylist con el producto, si no hay, retorna el arraylist sin elemento
         return producto;
     }
+
+    
+    public static List<Producto> buscarProductoPorCategoria(String categoria) throws SQLException
+    {
+        List<Producto> productos = new ArrayList<>();
+        Conexion conexion = new Conexion();  // Crear una nueva conexión
+        Connection conn = null;
+
+        // Abrimos la conexión
+        if (!conexion.abrir()) {
+            throw new SQLException("No se pudo abrir la conexión.");
+        }
+
+        conn = conexion.enlace;  // Obtener la conexión abierta
+        String sql = "SELECT nombreProducto, descripcion, precio ,cantidadStock ,categoria, provedor FROM producto WHERE categoria = ? ";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            // Asignar los parámetros a la consulta
+            stmt.setString(1, categoria);
+            ResultSet rs = stmt.executeQuery();
+            
+            //verificar si hay un resultado
+            while(rs.next())
+            {
+                
+                String nombreProducto = rs.getString("nombreProducto");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio");
+                int cantidadStock = rs.getInt("cantidadStock");
+                String provedor = rs.getString("provedor");
+                
+               
+                productos.add(new Producto(nombreProducto, descripcion, precio, cantidadStock,categoria, provedor));
+               
+            }
+            
+        } finally {
+            // Cerrar la conexión
+            conexion.cerrar();
+        }
+        return productos;
+    }
+    
+        public static List<Producto> buscarProductoPorPrecio(double precio) throws SQLException
+    {
+        List<Producto> productos = new ArrayList<>();
+        Conexion conexion = new Conexion();  // Crear una nueva conexión
+        Connection conn = null;
+
+        // Abrimos la conexión
+        if (!conexion.abrir()) {
+            throw new SQLException("No se pudo abrir la conexión.");
+        }
+
+        conn = conexion.enlace;  // Obtener la conexión abierta
+        String sql = "SELECT nombreProducto, descripcion, precio ,cantidadStock ,categoria, provedor FROM producto WHERE precio <= ? ";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            // Asignar los parámetros a la consulta
+            stmt.setDouble(1, precio);
+            ResultSet rs = stmt.executeQuery();
+            
+            //verificar si hay un resultado
+            while(rs.next())
+            {
+                
+                String nombreProducto = rs.getString("nombreProducto");
+                String descripcion = rs.getString("descripcion");
+                String categoria = rs.getString("categoria");
+                double precior = rs.getDouble("precio");
+                int cantidadStock = rs.getInt("cantidadStock");
+                String provedor = rs.getString("provedor");
+                
+               
+                productos.add(new Producto(nombreProducto, descripcion, precior, cantidadStock,categoria, provedor));
+               
+            }
+            
+        } finally {
+            // Cerrar la conexión
+            conexion.cerrar();
+        }
+        return productos;
+    }
 }
+    
+    
 

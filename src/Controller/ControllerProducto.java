@@ -5,22 +5,29 @@
 package Controller;
 
 import Model.Producto;
+import VistaController.VentasView;
 import VistaController.ProductosView;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-
-public class ControllerProducto {
-    
+    public class ControllerProducto {
+    private VentasView vista;
     private ProductosView view;
-    
-    
-    public boolean insertarProducto(String nombreProducto, String descripcion, double precio, int cantidadStock, String categoria, int estadoProducto, String provedor) throws SQLException {
-        
-        Producto producto = new Producto(nombreProducto,descripcion,precio,cantidadStock,categoria,estadoProducto,provedor);
-        
-        try{
+
+    public ControllerProducto(VentasView vista) {
+        this.vista = vista;
+    }
+
+    public ControllerProducto() {
+    }
+
+    public boolean insertarProducto(String nombreProducto, String descripcion, double precio, int cantidadStock,
+            String categoria, int estadoProducto, String provedor) throws SQLException {
+
+        Producto producto = new Producto(nombreProducto, descripcion, precio, cantidadStock, categoria, estadoProducto,
+                provedor);
+
+        try {
             Producto.insertarProducto(producto);
             return true;
         }catch(SQLException e){
@@ -48,7 +55,36 @@ public class ControllerProducto {
             return false;
         }
     }
-    
+
+    public List<Producto> buscarProductoPorCategoria(String categoria)
+    {
+        try {
+            return Producto.buscarProductoPorCategoria(categoria);
+        } catch (SQLException e) {
+            System.out.println("Error al buscar el producto: " + e.getMessage());
+            return null;
+        }
+    }
+    public void cargarCmb() {
+        try {
+            List<Producto> prod = Producto.buscarTablaProducto();
+            for (Producto p : prod) {
+                vista.getCmbCategoria().addItem(p.getCategoria());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+        public List<Producto> buscarProductoPorPrecio(double precio)
+    {
+        try {
+            return Producto.buscarProductoPorPrecio(precio);
+        } catch (SQLException e) {
+            System.out.println("Error al buscar el producto: " + e.getMessage());
+            return null;
+        }
+    }
+   
     public void cargarIdCmbModificar(){
         try{
             //obtener los id desde la base de datos

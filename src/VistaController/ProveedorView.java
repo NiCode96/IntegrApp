@@ -416,9 +416,9 @@ public class ProveedorView extends javax.swing.JInternalFrame {
         int id_provedor = Integer.parseInt(txtId.getText());
         Proveedor proveedor = new Proveedor(id_provedor, nombre, direccion, telefono, estadoProveedor);
         if (proveedorController.modificarProveedor(proveedor)) {
-            JOptionPane.showMessageDialog(this, "País modificado correctamente.");
+            JOptionPane.showMessageDialog(this, "Proveedor modificado correctamente.");
         } else {
-            JOptionPane.showMessageDialog(this, "Error al modificar el país.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al modificar el proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         llenarTabla();
         

@@ -61,6 +61,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnAgregarCarrito" min="-2" pref="350" max="-2" attributes="0"/>
+                              <EmptySpace pref="49" max="32767" attributes="0"/>
+                              <Component id="btnLimpiarBuscador" min="-2" pref="350" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -68,19 +73,14 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="cmbCategoria" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="cmbCategoria" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="txtPrecio" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnAgregarCarrito" min="-2" pref="350" max="-2" attributes="0"/>
-                              <EmptySpace pref="49" max="32767" attributes="0"/>
-                              <Component id="btnLimpiarBuscador" min="-2" pref="350" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -124,14 +124,14 @@
             <Component class="javax.swing.JComboBox" name="cmbCategoria">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="Seleccionar Categoria"/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbCategoriaActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -141,7 +141,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Categoria"/>
+                <Property name="text" type="java.lang.String" value="Categoria:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -149,10 +149,13 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Precio"/>
+                <Property name="text" type="java.lang.String" value="Precio Maximo:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPrecio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPrecioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -229,6 +232,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agregar carrito"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarCarritoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnLimpiarBuscador">
               <Properties>
@@ -237,6 +243,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Limpiar buscador"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarBuscadorActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -276,7 +285,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jTextField4" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="txtTotal" min="-2" pref="200" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -299,7 +308,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="txtTotal" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -327,11 +336,10 @@
                 <Component class="javax.swing.JTable" name="tblCarrito">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="4">
+                      <Table columnCount="3" rowCount="0">
                         <Column editable="true" title="Nombre" type="java.lang.Object"/>
                         <Column editable="true" title="Precio unidad" type="java.lang.Object"/>
                         <Column editable="true" title="Cantidad" type="java.lang.Object"/>
-                        <Column editable="true" title="Monto total" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -358,6 +366,7 @@
                         </Column>
                       </TableColumnModel>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
@@ -373,7 +382,11 @@
                 <Property name="text" type="java.lang.String" value="Total de la compra: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
+            <Component class="javax.swing.JTextField" name="txtTotal">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="$0"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnPagar">
               <Properties>

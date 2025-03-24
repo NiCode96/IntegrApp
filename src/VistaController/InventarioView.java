@@ -26,19 +26,19 @@ public class InventarioView extends javax.swing.JInternalFrame {
     public InventarioView() {
         initComponents();
         
-        /*model.addColumn("ID Producto");
+        model.addColumn("ID Producto");
         model.addColumn("Nombre Producto");
         model.addColumn("Descripcion");
         model.addColumn("Precio");
         model.addColumn("Cantidad Stock");
         model.addColumn("Categoria");
         model.addColumn("Provedor");
-        llenarTabla();*/
+        llenarTabla();
         
     }
     
     
-    /*public void llenarTabla(){ //metodo con el que se llena la tabla para el usuario, utilizando el metodo para buscar producto de la clase producto 
+    public void llenarTabla(){ //metodo con el que se llena la tabla para el usuario, utilizando el metodo para buscar producto de la clase producto 
     tblInventario.setModel(model);
     model.setRowCount(0);
     
@@ -55,7 +55,7 @@ public class InventarioView extends javax.swing.JInternalFrame {
                 objeto[3] = tablaProducto.getPrecio();
                 objeto[4] = tablaProducto.getCantidadStock();
                 objeto[5] = tablaProducto.getCategoria();
-                objeto[6] = tablaProducto.getProvedor();
+                objeto[6] = tablaProducto.getProveedor();
                 
                 model.addRow(objeto);
                
@@ -68,7 +68,7 @@ public class InventarioView extends javax.swing.JInternalFrame {
         }
     
     
-    }*/
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

@@ -4,17 +4,26 @@
  */
 package VistaController;
 
+import Controller.ControllerProducto;
+import Model.Producto;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Cakri
  */
 public class VentasView extends javax.swing.JInternalFrame {
+    private ControllerProducto productoController;
 
     /**
      * Creates new form Ventas
      */
     public VentasView() {
         initComponents();
+        productoController = new ControllerProducto(this);
+        productoController.cargarCmb();
     }
 
     /**
@@ -42,7 +51,7 @@ public class VentasView extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCarrito = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
         btnPagar = new javax.swing.JToggleButton();
         btnCancelar = new javax.swing.JToggleButton();
         jLabel5 = new javax.swing.JLabel();
@@ -58,13 +67,24 @@ public class VentasView extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Filtrar por:");
 
-        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Categoria" }));
+        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCategoriaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Categoria");
+        jLabel2.setText("Categoria:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Precio");
+        jLabel3.setText("Precio Maximo:");
+
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Productos:");
@@ -84,9 +104,19 @@ public class VentasView extends javax.swing.JInternalFrame {
 
         btnAgregarCarrito.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAgregarCarrito.setText("Agregar carrito");
+        btnAgregarCarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarCarritoActionPerformed(evt);
+            }
+        });
 
         btnLimpiarBuscador.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnLimpiarBuscador.setText("Limpiar buscador");
+        btnLimpiarBuscador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarBuscadorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -97,22 +127,22 @@ public class VentasView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnAgregarCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(btnLimpiarBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(95, 95, 95)
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnAgregarCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addComponent(btnLimpiarBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -138,24 +168,25 @@ public class VentasView extends javax.swing.JInternalFrame {
 
         tbpVentas.addTab("Catalogo", jPanel2);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18))); // NOI18N
         jPanel1.setToolTipText("");
 
         tblCarrito.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nombre", "Precio unidad", "Cantidad", "Monto total"
+                "Nombre", "Precio unidad", "Cantidad"
             }
         ));
+        tblCarrito.setEnabled(false);
         jScrollPane2.setViewportView(tblCarrito);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Total de la compra: ");
+
+        txtTotal.setEditable(false);
+        txtTotal.setText("$0");
 
         btnPagar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnPagar.setText("Pagar");
@@ -191,7 +222,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +238,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -239,8 +270,106 @@ public class VentasView extends javax.swing.JInternalFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model =(DefaultTableModel) tblCarrito.getModel();
+        model.setRowCount(0);
+        JOptionPane.showMessageDialog(this, "Carrito vaciado");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
+        // TODO add your handling code here:
+        String categoria = (String) cmbCategoria.getSelectedItem();
+        if (categoria != null) {
+            List<Producto> productos = productoController.buscarProductoPorCategoria(categoria);
+            llenarTablaCatalogo(productos);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una categoria válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_cmbCategoriaActionPerformed
+
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+        double precio;
+        try {
+            precio = Double.parseDouble(txtPrecio.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese un Precio válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+        if (precio > 0){
+            List<Producto> productos = productoController.buscarProductoPorPrecio(precio);
+            llenarTablaCatalogo(productos);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un monto válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtPrecioActionPerformed
+
+    private void btnLimpiarBuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarBuscadorActionPerformed
+        // TODO add your handling code here:
+        tblCatalogo.clearSelection();
+        cmbCategoria.setSelectedIndex(0);
+        txtPrecio.setText("");
+    }//GEN-LAST:event_btnLimpiarBuscadorActionPerformed
+
+    private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
+        // TODO add your handling code here:
+        int fila = tblCatalogo.getSelectedRow();
+        if (fila == -1) {
+                JOptionPane.showMessageDialog(this, "Seleccione un producto primero.");
+                return;
+            }
+        
+        DefaultTableModel modeloOrigen = (DefaultTableModel) tblCatalogo.getModel();
+        DefaultTableModel modeloDestino = (DefaultTableModel) tblCarrito.getModel();
+
+        // Obtener los datos de la fila seleccionada
+        int columnas = modeloOrigen.getColumnCount();
+        Object[] datosFila = new Object[columnas];
+
+        for (int i = 0; i < columnas; i++) {
+        datosFila[i] = modeloOrigen.getValueAt(fila, i);
+        }
+        modeloDestino.addRow(datosFila);
+        
+        double suma = 0;
+        for(int i = 0; i < modeloDestino.getRowCount(); i++) {
+            double precio = Double.parseDouble(modeloDestino.getValueAt(fila, 1).toString());
+            suma += precio * 1.19;
+        } 
+        String total = String.valueOf(suma);
+        txtTotal.setText("$"+total);
+        
+        
+        
+
+
+        
+    }//GEN-LAST:event_btnAgregarCarritoActionPerformed
+        private void llenarTablaCatalogo(List<Producto> productos) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Stock");
+        modelo.addColumn("Categoria");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Proveedor");
+
+        for (Producto prod : productos) {
+            modelo.addRow(new Object[]{
+                prod.getNombreProducto(),
+                prod.getPrecio(),
+                prod.getCantidadStock(),
+                prod.getCategoria(),
+                prod.getDescripcion(),
+                prod.getProveedor()
+            });
+        }
+
+        tblCatalogo.setModel(modelo);
+    }
+        
+    public javax.swing.JComboBox<String> getCmbCategoria() {
+        return cmbCategoria;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAgregarCarrito;
@@ -259,10 +388,10 @@ public class VentasView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tblCarrito;
     private javax.swing.JTable tblCatalogo;
     private javax.swing.JTabbedPane tbpVentas;
     private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
