@@ -30,8 +30,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         dpnMain = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         cbmInventario = new javax.swing.JCheckBoxMenuItem();
         cbmProveedor = new javax.swing.JCheckBoxMenuItem();
@@ -51,13 +49,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             .addGap(0, 658, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Menu");
+        jMenu3.setText("MENU PRINCIPAL");
 
         cbmInventario.setSelected(true);
         cbmInventario.setText("Inventario");
@@ -185,8 +177,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem cbmProveedor;
     private javax.swing.JCheckBoxMenuItem cbmReportes;
     private javax.swing.JDesktopPane dpnMain;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables

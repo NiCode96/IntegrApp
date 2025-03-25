@@ -8,6 +8,7 @@ import Model.Producto;
 import VistaController.VentasView;
 import VistaController.ProductosView;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
     public class ControllerProducto {
@@ -134,4 +135,68 @@ import java.util.List;
             return null;
         }
     }
+    
+    
+    public static ArrayList<Producto> tablaProductos ()throws SQLException{
+    
+        try {
+            
+            
+          ArrayList<Producto> tablaProducto = Producto.buscarTablaProducto();
+            
+            
+        } catch (Exception e) {
+        }
+    
+    
+    return tablaProductos();
+    
+    }
+    
+    
+    
+    
+    
+    
+       public static ArrayList<Producto> tablaProductosMAX$ ()throws SQLException{
+    
+        try {
+            
+            
+          ArrayList<Producto> tablaProducto = Producto.buscarProductoMAX$();
+            
+            
+        } catch (Exception e) {
+        }
+    
+    
+    return tablaProductos();
+    
+    }
+       
+       
+       
+       
+       
+       
+       
+       
+       
+          public static ArrayList<Producto> tablaProductosMIN$ ()throws SQLException{
+    
+        try {
+            
+            
+          ArrayList<Producto> tablaProducto = Producto.buscarProductoDESC$();
+            
+            
+        } catch (Exception e) {
+        }
+    
+    
+    return tablaProductos();
+    
+    }
 }
+
+

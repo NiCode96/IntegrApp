@@ -446,6 +446,135 @@ public class Producto {
         }
         return productos;
     }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ///////////////////////////////////////  ESCRITO POR NICOLAS MACHUCA /////////////////////////////
+        ///////****************** NO BORRAR SE USAN LAS CONSULTAS PARA REPORTE PORFS *****************************//////////////////
+        
+        
+        
+        
+        public static ArrayList <Producto> buscarProductoMAX$() throws SQLException{ 
+    
+        ArrayList <Producto> tablaProductos = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = null;
+    
+        if (!conexion.abrir()) {
+            throw new SQLException("No se pudo abrir base de datos");
+        } 
+                 
+        conn = conexion.enlace;
+        
+        try {
+            
+            String consultaSQL = "SELECT * FROM producto ORDER BY precio ";
+            PreparedStatement statement = conn.prepareStatement(consultaSQL);
+            ResultSet resultado = statement.executeQuery();
+            
+            while (resultado.next()) {
+                Producto producto = new Producto();
+                producto.setId_producto(resultado.getInt("id_producto"));
+                producto.setNombreProducto(resultado.getString("nombreProducto"));
+                producto.setDescripcion(resultado.getString("descripcion"));
+                producto.setPrecio(resultado.getInt("precio"));
+                producto.setCantidadStock(resultado.getInt("cantidadStock"));
+                producto.setCategoria(resultado.getString("categoria"));
+                producto.setEstadoProducto(resultado.getInt("estadoProducto"));
+                producto.setProvedor(resultado.getString("provedor"));
+                producto.setId_provedor(resultado.getInt("id_provedor"));
+                tablaProductos.add(producto);      
+            }
+        } finally {
+            conexion.cerrar();
+        }
+    return tablaProductos;
+    }
+        
+        
+    
+        
+        
+         
+        public static ArrayList <Producto> buscarProductoDESC$() throws SQLException{ 
+    
+        ArrayList <Producto> tablaProductos = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = null;
+    
+        if (!conexion.abrir()) {
+            throw new SQLException("No se pudo abrir base de datos");
+        } 
+                 
+        conn = conexion.enlace;
+        
+        try {
+            
+            String consultaSQL = "SELECT * FROM producto ORDER BY precio DESC";
+            PreparedStatement statement = conn.prepareStatement(consultaSQL);
+            ResultSet resultado = statement.executeQuery();
+            
+            while (resultado.next()) {
+                Producto producto = new Producto();
+                producto.setId_producto(resultado.getInt("id_producto"));
+                producto.setNombreProducto(resultado.getString("nombreProducto"));
+                producto.setDescripcion(resultado.getString("descripcion"));
+                producto.setPrecio(resultado.getInt("precio"));
+                producto.setCantidadStock(resultado.getInt("cantidadStock"));
+                producto.setCategoria(resultado.getString("categoria"));
+                producto.setEstadoProducto(resultado.getInt("estadoProducto"));
+                producto.setProvedor(resultado.getString("provedor"));
+                producto.setId_provedor(resultado.getInt("id_provedor"));
+                tablaProductos.add(producto);      
+            }
+        } finally {
+            conexion.cerrar();
+        }
+    return tablaProductos;
+    }
+        
+        
+   
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 }
     
     

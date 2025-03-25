@@ -3,16 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/VistaController/ProductosView.java</file>
-            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/VistaController/VistaPrincipal.java</file>
-            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/VistaController/ProveedorView.java</file>
-            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/Controller/ControllerProducto.java</file>
-            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/Model/Producto.java</file>
-            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/VistaController/VentasView.java</file>
-            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/Conexion/Conexion.java</file>
-            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/VistaController/InventarioView.java</file>
-            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/Model/Proveedor.java</file>
-            <file>file:/C:/Users/h2345/OneDrive/Escritorio/Informatica/Integracion%20de%20competencias/IntegrApp/src/Controller/ControllerProveedor.java</file>
+            <file>file:/Users/nicolas/Desktop/IntegrApp/src/Model/Producto.java</file>
+            <file>file:/Users/nicolas/Desktop/IntegrApp/src/VistaController/ReportesView.java</file>
+            <file>file:/Users/nicolas/Desktop/IntegrApp/src/Controller/ControllerProducto.java</file>
         </group>
     </open-files>
 </project-private>
