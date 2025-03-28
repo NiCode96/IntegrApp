@@ -32,10 +32,10 @@ public class ReportesView extends javax.swing.JInternalFrame {
         model.addColumn("Precios");
         model.addColumn("Categoria");
         model.addColumn("Stock");
+        model.addColumn("Unidades Vendidas");
         
         
-        llenarComponentes();
-       
+        llenarComponentes(); 
     }
 
     
@@ -49,15 +49,7 @@ public class ReportesView extends javax.swing.JInternalFrame {
         combo_buscarCategoria.addItem("ORDENAR POR MAYOR PRECIO");
         combo_buscarCategoria.addItem("ORDENAR POR MAS COMPRADO");
         combo_buscarCategoria.addItem("ORDENAR POR MENOS COMPRADO");
-        
-        
-  
-        
-        
-        
-    
-   
-        
+          
         
     }
     
@@ -78,7 +70,44 @@ public class ReportesView extends javax.swing.JInternalFrame {
     
             for (Producto producto : tablaOrderMAX) {
                 
-                Object [] objeto = new Object[3];
+                Object [] objeto = new Object[4];
+                
+                        objeto[0]=producto.getNombreProducto();
+                        objeto[1]=producto.getPrecio();
+                        objeto[2]= producto.getCategoria();
+                        objeto[3]= producto.getCantidadStock();
+                        
+                        model.addRow(objeto);
+            }
+    
+         
+        } catch (Exception e) {
+        }
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+        
+    public void buscarMIN(){
+    
+        try {
+   
+            tabla_reporte.setModel(model); 
+   
+    
+    ArrayList<Producto> tablaOrderMIN = Producto.buscarProductoDESC$();
+    
+        model.setRowCount(0);
+    
+            for (Producto producto : tablaOrderMIN) {
+                
+                Object [] objeto = new Object[4];
                 
                         objeto[0]=producto.getNombreProducto();
                         objeto[1]=producto.getPrecio();
@@ -95,6 +124,54 @@ public class ReportesView extends javax.swing.JInternalFrame {
     
     
     }
+    
+    
+    
+    
+        public void buscarMasVenido(){
+    
+        try {
+   
+            tabla_reporte.setModel(model); 
+   
+    
+    ArrayList<Producto> tablaOrderMAX = Producto.buscarProductoMAX$();
+    
+        model.setRowCount(0);
+    
+            for (Producto producto : tablaOrderMAX) {
+                
+                Object [] objeto = new Object[4];
+                
+                        objeto[0]=producto.getNombreProducto();
+                        objeto[1]=producto.getPrecio();
+                        objeto[2]= producto.getCategoria();
+                        
+                        objeto[3]= producto.getCantidadStock();
+                        
+                        model.addRow(objeto);
+            }
+    
+         
+        } catch (Exception e) {
+        }
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -185,7 +262,46 @@ public class ReportesView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        // TODO add your handling code here:
+
+        try {
+        
+           String opcionSeleccionaa = combo_buscarCategoria.getSelectedItem().toString();
+            
+            if (opcionSeleccionaa.equals("ORDENAR POR MAYOR PRECIO")) {
+                buscarMax();
+            }
+            
+             if (opcionSeleccionaa.equals("ORDENAR POR MENOR PRECIO")) {
+                buscarMIN();
+            }
+            
+              if (opcionSeleccionaa.equals("ORDENAR POR MAS COMPRADO")) {
+                
+            }
+            
+               if (opcionSeleccionaa.equals("ORDENAR POR MENOS COMPRADO")) {
+                
+            }
+            
+         
+            
+         
+             
+
+            
+            
+            
+        } catch (Exception e) {
+        }
+
+
+
+
+
+
+
+
+       
     }//GEN-LAST:event_btn_buscarActionPerformed
 
 

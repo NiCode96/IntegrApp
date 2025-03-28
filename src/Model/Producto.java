@@ -30,6 +30,7 @@ public class Producto {
     protected int estadoProducto;
     protected String provedor;
     protected int id_provedor;
+    protected int VR_VentasRealizadas;
 
     /*
         constructor general con todos los atributos de la clase 
@@ -45,6 +46,7 @@ public class Producto {
         this.estadoProducto = estadoProducto;
         this.provedor = provedor;
         this.id_provedor = id_provedor;
+        
     }
     
     /*
@@ -560,10 +562,86 @@ public class Producto {
         
         
         
+                
+        public static ArrayList <Producto> buscarProductoVENDIDOSASC() throws SQLException{ 
+    
+        ArrayList <Producto> tablaProductos = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = null;
+    
+        if (!conexion.abrir()) {
+            throw new SQLException("No se pudo abrir base de datos");
+        } 
+                 
+        conn = conexion.enlace;
+        
+        try {
+            
+            String consultaSQL = "SELECT * FROM producto ORDER BY VR_VentasRealizadas DESC ";
+            PreparedStatement statement = conn.prepareStatement(consultaSQL);
+            ResultSet resultado = statement.executeQuery();
+            
+            while (resultado.next()) {
+                Producto producto = new Producto();
+                producto.setId_producto(resultado.getInt("id_producto"));
+                producto.setNombreProducto(resultado.getString("nombreProducto"));
+                producto.setDescripcion(resultado.getString("descripcion"));
+                producto.setPrecio(resultado.getInt("precio"));
+                producto.setCantidadStock(resultado.getInt("cantidadStock"));
+                producto.setCategoria(resultado.getString("categoria"));
+                producto.setEstadoProducto(resultado.getInt("estadoProducto"));
+                producto.setProvedor(resultado.getString("provedor"));
+                producto.setId_provedor(resultado.getInt("id_provedor"));
+                tablaProductos.add(producto);      
+            }
+        } finally {
+            conexion.cerrar();
+        }
+    return tablaProductos;
+    }
         
         
         
         
+        
+        
+                
+        public static ArrayList <Producto> buscarPRODUCTOSVENDIDOSMIN() throws SQLException{ 
+    
+        ArrayList <Producto> tablaProductos = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = null;
+    
+        if (!conexion.abrir()) {
+            throw new SQLException("No se pudo abrir base de datos");
+        } 
+                 
+        conn = conexion.enlace;
+        
+        try {
+            
+            String consultaSQL = "SELECT * FROM producto ORDER BY VR_VentasRealizadas ASC ";
+            PreparedStatement statement = conn.prepareStatement(consultaSQL);
+            ResultSet resultado = statement.executeQuery();
+            
+            while (resultado.next()) {
+                Producto producto = new Producto();
+                producto.setId_producto(resultado.getInt("id_producto"));
+                producto.setNombreProducto(resultado.getString("nombreProducto"));
+                producto.setDescripcion(resultado.getString("descripcion"));
+                producto.setPrecio(resultado.getInt("precio"));
+                producto.setCantidadStock(resultado.getInt("cantidadStock"));
+                producto.setCategoria(resultado.getString("categoria"));
+                producto.setEstadoProducto(resultado.getInt("estadoProducto"));
+                producto.setProvedor(resultado.getString("provedor"));
+                producto.setId_provedor(resultado.getInt("id_provedor"));
+                tablaProductos.add(producto);      
+            }
+        } finally {
+            conexion.cerrar();
+        }
+    return tablaProductos;
+    }
         
         
         
